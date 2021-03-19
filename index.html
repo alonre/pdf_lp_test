@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>PDF Landing Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    </head>
+    <body>
+        <form id="download_form" method="get" action="">
+            <button type="submit" class="btn btn-primary m-1">Download</button>
+         </form>
+         
+        <iframe id="pdf_iframe" src="" style="width:100%; height:100%;" frameborder="0"></iframe>
+        <div id="error" style="position: fixed; top: 0px; display: none;">
+            <p>
+                No pdf loading? Make sure to include '?url=https://url.to.your/file.pdf' to the end of the URL
+            </p>
+        </div>
+        <script>
+            if (document.location.search) {
+                let gdocsPdfViewerBase = "https://docs.google.com/gview";
+                let pdfIframe = document.getElementById('pdf_iframe');
+                pdfIframe.src = gdocsPdfViewerBase + document.location.search + "&embedded=true";
+                let params = new URLSearchParams(document.location.search.substring(1));
+                console.log(params.get('url'));
+                let downloadForm = document.getElementById('download_form');
+                downloadForm.action = params.get('url');
+            } else {
+                let errorDiv = document.getElementById('error');
+                errorDiv.style += 'display: block;';
+            }
+            
+        </script>
+        <script>
+            window.intercomSettings = {
+              app_id: "g0yyb1fs"
+            };
+          </script>
+          
+          <script>
+          // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/g0yyb1fs'
+          (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/g0yyb1fs';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+          </script>
+    </body>
+</html>
