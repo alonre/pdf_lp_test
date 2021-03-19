@@ -9,20 +9,20 @@
          </form>
          
         <iframe id="pdf_iframe" src="" style="width:100%; height:100%;" frameborder="0"></iframe>
-        <div id="error" style="position: fixed; top: 0px; display: none;">
-            <p>
+        <div id="error" style="position: fixed; top: 0px; display: none; z-index: 10;">
+            <h1>
                 No pdf loading? Make sure to include '?url=https://url.to.your/file.pdf' to the end of the URL
-            </p>
+            </h1>
         </div>
         <script>
-            if (document.location.search) {
+            let params = new URLSearchParams(document.location.search.substring(1));
+            let pdfUrl = params.get('url');
+            if (pdfUrl) {
                 let gdocsPdfViewerBase = "https://docs.google.com/gview";
                 let pdfIframe = document.getElementById('pdf_iframe');
-                pdfIframe.src = gdocsPdfViewerBase + document.location.search + "&embedded=true";
-                let params = new URLSearchParams(document.location.search.substring(1));
-                console.log(params.get('url'));
+                pdfIframe.src = `gdocsPdfViewerBase?${pdfUrl}&embedded=true`;
                 let downloadForm = document.getElementById('download_form');
-                downloadForm.action = params.get('url');
+                downloadForm.action = pdfURl;
             } else {
                 let errorDiv = document.getElementById('error');
                 errorDiv.style += 'display: block;';
