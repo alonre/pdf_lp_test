@@ -20,7 +20,7 @@
             if (pdfUrl) {
                 let gdocsPdfViewerBase = "https://docs.google.com/gview";
                 let pdfIframe = document.getElementById('pdf_iframe');
-                pdfIframe.src = `gdocsPdfViewerBase?url=${pdfUrl}&embedded=true`;
+                pdfIframe.src = `${gdocsPdfViewerBase}?url=${pdfUrl}&embedded=true`;
                 let downloadForm = document.getElementById('download_form');
                 downloadForm.action = pdfURl;
             } else {
